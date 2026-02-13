@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💜 The Ultimate Relationship Test - Valentine's Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,900&family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0014;
+            --bg-card: #1a0b2e;
+            --purple: #9d4edd;
+            --pink: #ff006e;
+            --accent: #c77dff;
+            --text: #f0e6ff;
+            --text-dim: #b19cd9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(199, 125, 255, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--purple);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float-particle 20s infinite ease-in-out;
+        }
+
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px);
+            }
+            50% {
+                transform: translateY(-50px) translateX(-50px);
+            }
+            75% {
+                transform: translateY(-150px) translateX(30px);
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(26, 11, 46, 0.8);
+            border: 2px solid rgba(157, 78, 221, 0.3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(157, 78, 221, 0.2);
+            margin-bottom: 30px;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .emoji-large {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
+        }
+
+        .start-screen h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 900;
+            font-size: 2.5rem;
+            color: var(--purple);
+            margin-bottom: 20px;
+        }
+
+        .start-screen p {
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 600;
+            line-height: 1.8;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+        }
+
+        .warning-box {
+            background: rgba(255, 0, 110, 0.1);
+            border-left: 4px solid var(--pink);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+        .warning-box p {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        /* Buttons */
+        button {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 10px 40px rgba(157, 78, 221, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(157, 78, 221, 0.6);
+        }
+
+        button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* Progress */
+        .progress-container {
+            margin-bottom: 40px;
+        }
+
+        .progress-text {
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            background: rgba(157, 78, 221, 0.2);
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--purple) 0%, var(--pink) 100%);
+            border-radius: 10px;
+            transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+        }
+
+        /* Question Screen */
+        .quiz-screen {
+            display: none;
+        }
+
+        .question-card {
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .question-number {
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--pink);
+        }
+
+        .difficulty-badge {
+            font-style: italic;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(157, 78, 221, 0.2);
+            color: var(--accent);
+            border: 1px solid var(--purple);
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 35px;
+            line-height: 1.4;
+            color: var(--text);
+        }
+
+        .answers {
+            display: grid;
+            gap: 15px;
+        }
+
+        .answer-btn {
+            width: 100%;
+            text-align: left;
+            padding: 20px 25px;
+            background: rgba(157, 78, 221, 0.1);
+            color: var(--text);
+            border: 2px solid rgba(157, 78, 221, 0.3);
+            border-radius: 15px;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            cursor: pointer;
+        }
+
+        .answer-btn:hover {
+            background: rgba(157, 78, 221, 0.3);
+            border-color: var(--purple);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .answer-btn::before {
+            display: none;
+        }
+
+        /* Results Screen */
+        .results-screen {
+            display: none;
+        }
+
+        .results-card {
+            text-align: center;
+            animation: zoomIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .celebration-emoji {
+            font-size: 7rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            animation: celebrate 1.5s ease;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.2); }
+            50% { transform: rotate(10deg) scale(1.1); }
+            75% { transform: rotate(-5deg) scale(1.15); }
+        }
+
+        .results-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 900;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+
+        .results-message {
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-dim);
+            margin-bottom: 35px;
+        }
+
+        .screenshot-prompt {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2) 0%, rgba(255, 0, 110, 0.2) 100%);
+            border: 2px solid var(--purple);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .screenshot-prompt h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--pink);
+            margin-bottom: 15px;
+        }
+
+        .screenshot-prompt p {
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        /* Rating Section */
+        .rating-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 0, 110, 0.1);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 0, 110, 0.3);
+        }
+
+        .rating-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--purple);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rating-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .rating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 0;
+            background: rgba(157, 78, 221, 0.2);
+            border: 2px solid var(--purple);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .rating-btn:hover {
+            background: var(--purple);
+            transform: scale(1.2);
+        }
+
+        .rating-btn.selected {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+            transform: scale(1.3);
+            box-shadow: 0 5px 25px rgba(157, 78, 221, 0.6);
+        }
+
+        .rating-message {
+            font-style: italic;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+            text-align: center;
+            min-height: 30px;
+            margin-top: 15px;
+        }
+
+        /* Admin View Toggle */
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .admin-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(26, 11, 46, 0.9);
+            border: 2px solid var(--purple);
+            font-size: 1.5rem;
+            padding: 0;
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.4);
+        }
+
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 0, 20, 0.95);
+            z-index: 999;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .close-admin {
+            background: var(--pink);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            padding: 0;
+        }
+
+        .response-item {
+            background: rgba(26, 11, 46, 0.6);
+            border: 2px solid rgba(157, 78, 221, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .response-id {
+            font-style: italic;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .response-time {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .response-answers {
+            display: grid;
+            gap: 10px;
+        }
+
+        .response-answer {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            padding: 8px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 8px;
+        }
+
+        .response-rating {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+            font-style: italic;
+            font-weight: 700;
+            color: var(--pink);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            .card {
+                padding: 35px 25px;
+                border-radius: 20px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .question-text {
+                font-size: 1.4rem;
+            }
+            .emoji-large {
+                font-size: 4rem;
+            }
+            .start-screen h2 {
+                font-size: 1.8rem;
+            }
+            .rating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <header>
+            <h1>💜 The Ultimate Relationship Test</h1>
+            <p class="subtitle">Valentine's Edition - 30 Questions That Matter</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div class="start-screen" id="startScreen">
+            <div class="card">
+                <div class="emoji-large">💕</div>
+                <h2>Are You Ready for the Truth?</h2>
+                <p>This isn't your average Valentine's quiz. These 30 questions will test how well you really know your partner.</p>
+                <p>Answer honestly. Screenshot your results. Send to your partner. See if they got it right.</p>
+                
+                <div class="warning-box">
+                    <p><strong>⚠️ Warning:</strong> Some questions are easy. Some are hard. Some are absolutely wild. The last 10 will make you think about your future together.</p>
+                </div>
+                
+                <p>Your answers are locked once submitted. No cheating. No editing.</p>
+                <p style="margin-top: 25px;"><strong>Ready to see if your relationship can handle the truth?</strong></p>
+                
+                <button onclick="startTest()" style="margin-top: 30px;">Let's Begin</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div class="quiz-screen" id="quizScreen">
+            <div class="progress-container">
+                <div class="progress-text" id="progressText">Question 1 of 30</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <div class="card question-card" id="questionCard"></div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="results-screen" id="resultsScreen">
+            <div class="card results-card">
+                <div class="celebration-emoji">🎉</div>
+                <h2 class="results-title">Test Complete!</h2>
+                <p class="results-message">You've answered all 30 questions. Time to see if your partner really knows you!</p>
+                
+                <div class="screenshot-prompt">
+                    <h3>📸 Screenshot This!</h3>
+                    <p>Take a screenshot of your completion below and send it to your partner. Let them guess your answers!</p>
+                </div>
+
+                <div style="background: rgba(157, 78, 221, 0.1); padding: 25px; border-radius: 15px; margin: 25px 0;">
+                    <p style="font-style: italic; font-weight: 700; font-size: 1.3rem; color: var(--accent); margin-bottom: 10px;">Your Response ID:</p>
+                    <p style="font-style: italic; font-weight: 700; font-size: 2rem; color: var(--purple);" id="responseId">LOADING...</p>
+                    <p style="font-style: italic; font-size: 1rem; color: var(--text-dim); margin-top: 10px;">Completed: <span id="completionTime"></span></p>
+                </div>
+
+                <div class="rating-section">
+                    <h3>How would you rate this test?</h3>
+                    <div class="rating-buttons" id="ratingButtons"></div>
+                    <div class="rating-message" id="ratingMessage"></div>
+                </div>
+
+                <button onclick="restartTest()" style="margin-top: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">Take Test Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Toggle Button -->
+    <div class="admin-toggle">
+        <button class="admin-btn" onclick="toggleAdmin()" title="View All Responses">👁️</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 900; font-size: 2.5rem; color: var(--purple);">All Responses</h2>
+                <button class="close-admin" onclick="toggleAdmin()">✕</button>
+            </div>
+            <div id="adminResponses"></div>
+        </div>
+    </div>
+
+    <script>
+        // Create particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // All 30 questions
+        const questions = [
+            // EASY QUESTIONS (1-10)
+            { q: "What's my favorite color?", difficulty: "Easy", type: "easy" },
+            { q: "What's my favorite food or meal?", difficulty: "Easy", type: "easy" },
+            { q: "What's my favorite movie or TV show?", difficulty: "Easy", type: "easy" },
+            { q: "What's my go-to comfort food when I'm sad?", difficulty: "Easy", type: "easy" },
+            { q: "What's my biggest pet peeve?", difficulty: "Easy", type: "easy" },
+            { q: "What time do I usually go to bed?", difficulty: "Easy", type: "easy" },
+            { q: "What's my favorite type of music or artist?", difficulty: "Easy", type: "easy" },
+            { q: "What's my dream vacation destination?", difficulty: "Easy", type: "easy" },
+            { q: "What's my coffee/tea order?", difficulty: "Easy", type: "easy" },
+            { q: "What's my biggest fear?", difficulty: "Easy", type: "easy" },
+            
+            // MEDIUM QUESTIONS (11-20)
+            { q: "What's the weirdest thing that turns me on?", difficulty: "Medium", type: "medium" },
+            { q: "If I could have any superpower, what would it be and why?", difficulty: "Medium", type: "medium" },
+            { q: "What's the most embarrassing thing that happened to me as a child?", difficulty: "Medium", type: "medium" },
+            { q: "What's one thing I'm insecure about that I don't talk about often?", difficulty: "Medium", type: "medium" },
+            { q: "If I won a million dollars tomorrow, what's the FIRST thing I'd buy?", difficulty: "Medium", type: "medium" },
+            { q: "What's my love language? (How do I prefer to receive love?)", difficulty: "Medium", type: "medium" },
+            { q: "What's something I'm secretly jealous about when it comes to you?", difficulty: "Medium", type: "medium" },
+            { q: "If we broke up, what would be the most likely reason?", difficulty: "Medium", type: "medium" },
+            { q: "What's my ideal way to spend a lazy Sunday with you?", difficulty: "Medium", type: "medium" },
+            { q: "What's one thing about our relationship that I wish we did more often?", difficulty: "Medium", type: "medium" },
+            
+            // HARD/FUTURE QUESTIONS (21-30)
+            { q: "How many kids do I actually want in the future? (Be specific - could be 0!)", difficulty: "Hard", type: "hard" },
+            { q: "If I had to choose between my career dreams and our relationship, which would I honestly choose?", difficulty: "Hard", type: "hard" },
+            { q: "What would I do if you cheated on me? Would I forgive you or leave immediately?", difficulty: "Hard", type: "hard" },
+            { q: "If we had a huge financial crisis and lost everything, would I stay with you or leave?", difficulty: "Hard", type: "hard" },
+            { q: "What's the one dealbreaker that would make me end our relationship instantly?", difficulty: "Hard", type: "hard" },
+            { q: "If you became seriously ill or disabled, would I stay and take care of you or would it be too much?", difficulty: "Hard", type: "hard" },
+            { q: "Do I see myself marrying you? Answer honestly - yes, no, or unsure.", difficulty: "Hard", type: "hard" },
+            { q: "If your family hated me and made you choose, who would you pick - and who do I THINK you'd pick?", difficulty: "Hard", type: "hard" },
+            { q: "What's the biggest secret I've never told you? (Or the type of secret I'm hiding)", difficulty: "Hard", type: "hard" },
+            { q: "How many times have we celebrated Valentine's Day together? (Including this year)", difficulty: "Hard", type: "hard" }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let currentRating = 0;
+
+        function startTest() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('quizScreen').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            
+            document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            document.getElementById('questionCard').innerHTML = `
+                <div class="question-header">
+                    <span class="question-number">Question ${currentQuestion + 1}</span>
+                    <span class="difficulty-badge">${question.difficulty}</span>
+                </div>
+                <div class="question-text">${question.q}</div>
+                <div class="answers">
+                    <textarea 
+                        id="answerInput" 
+                        placeholder="Type your answer here..." 
+                        style="width: 100%; min-height: 120px; padding: 20px; background: rgba(157, 78, 221, 0.1); border: 2px solid rgba(157, 78, 221, 0.3); border-radius: 15px; color: var(--text); font-family: 'Crimson Text', serif; font-size: 1.1rem; font-style: italic; font-weight: 600; resize: vertical;"
+                    ></textarea>
+                    <button onclick="submitAnswer()" style="margin-top: 20px;">
+                        ${currentQuestion === questions.length - 1 ? 'Finish Test' : 'Next Question'}
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('answerInput').focus();
+        }
+
+        function submitAnswer() {
+            const answer = document.getElementById('answerInput').value.trim();
+            
+            if (!answer) {
+                alert('Please type an answer before continuing!');
+                return;
+            }
+
+            userAnswers.push({
+                question: questions[currentQuestion].q,
+                answer: answer,
+                difficulty: questions[currentQuestion].difficulty
+            });
+
+            currentQuestion++;
+            showQuestion();
+        }
+
+        function showResults() {
+            document.getElementById('quizScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+
+            // Generate unique response ID
+            const responseId = 'VAL-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2, 4).toUpperCase();
+            const completionTime = new Date().toLocaleString();
+
+            document.getElementById('responseId').textContent = responseId;
+            document.getElementById('completionTime').textContent = completionTime;
+
+            // Create rating buttons
+            const ratingContainer = document.getElementById('ratingButtons');
+            ratingContainer.innerHTML = '';
+            for (let i = 1; i <= 10; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'rating-btn';
+                btn.textContent = i;
+                btn.onclick = () => selectRating(i);
+                ratingContainer.appendChild(btn);
+            }
+
+            // Save response to localStorage
+            saveResponse(responseId, completionTime);
+        }
+
+        function selectRating(rating) {
+            currentRating = rating;
+            
+            // Update button states
+            const buttons = document.querySelectorAll('.rating-btn');
+            buttons.forEach((btn, index) => {
+                if (index + 1 === rating) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+
+            // Show message
+            const messages = {
+                1: "Ouch! 😢 We'll try harder next time!",
+                2: "Well, that's harsh! 💔",
+                3: "Not great, but thanks for the feedback! 😅",
+                4: "Could be better! We appreciate your honesty! 🙏",
+                5: "Right in the middle! Fair enough! 😊",
+                6: "Not bad! Thanks for trying it! 💜",
+                7: "Pretty good! We're glad you enjoyed it! 😄",
+                8: "Great! So happy you liked it! 🎉",
+                9: "Amazing! You're awesome! 🌟",
+                10: "PERFECT SCORE! You're incredible! 💖✨"
+            };
+
+            document.getElementById('ratingMessage').textContent = messages[rating];
+
+            // Update saved response with rating
+            updateResponseRating(rating);
+        }
+
+        function saveResponse(id, time) {
+            const responses = JSON.parse(localStorage.getItem('valentineResponses') || '[]');
+            responses.push({
+                id: id,
+                timestamp: time,
+                answers: userAnswers,
+                rating: currentRating
+            });
+            localStorage.setItem('valentineResponses', JSON.stringify(responses));
+        }
+
+        function updateResponseRating(rating) {
+            const responses = JSON.parse(localStorage.getItem('valentineResponses') || '[]');
+            if (responses.length > 0) {
+                responses[responses.length - 1].rating = rating;
+                localStorage.setItem('valentineResponses', JSON.stringify(responses));
+            }
+        }
+
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('active');
+            if (panel.classList.contains('active')) {
+                loadAdminResponses();
+            }
+        }
+
+        function loadAdminResponses() {
+            const responses = JSON.parse(localStorage.getItem('valentineResponses') || '[]');
+            const container = document.getElementById('adminResponses');
+            
+            if (responses.length === 0) {
+                container.innerHTML = '<p style="text-align: center; font-style: italic; color: var(--text-dim); padding: 40px;">No responses yet!</p>';
+                return;
+            }
+
+            container.innerHTML = responses.reverse().map((response, index) => `
+                <div class="response-item">
+                    <div class="response-header">
+                        <span class="response-id">Response #${responses.length - index}: ${response.id}</span>
+                        <span class="response-time">${response.timestamp}</span>
+                    </div>
+                    <div class="response-answers">
+                        ${response.answers.map((item, i) => `
+                            <div class="response-answer">
+                                <strong>Q${i + 1} (${item.difficulty}):</strong> ${item.question}<br>
+                                <span style="color: var(--accent);">→ ${item.answer}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${response.rating ? `<div class="response-rating">Rating: ${response.rating}/10 ${'⭐'.repeat(response.rating)}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            userAnswers = [];
+            currentRating = 0;
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
+        }
+    </script>
+</body>
+  </html>
